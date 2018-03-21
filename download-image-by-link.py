@@ -6,7 +6,7 @@ import urllib.request
 import cv2
 import numpy as np
 import os
-import pdb
+# from pdb import set_trace as bp
 
 def store_raw_images():
     # neg_images_link = 'http://image-net.org/api/text/imagenet.synset.geturls?wnid=n04146050'
@@ -116,14 +116,15 @@ def find_uglies():
 def create_pos_n_neg():
     for file_dir in ['neg', 'pos']:
 
+        # bp()
         for img in os.listdir(file_dir):
-
-            if file_dir == 'pos':
-                line = file_dir+'/'+img+' 1 0 0 50 50\n'
+            print(img)
+            if (file_dir == 'pos') & (str(img) != '.DS_Store'):
+                line = 'pos/'+str(img)+' 1 0 0 50 50\n'
                 with open('info.dat','a') as f:
                     f.write(line)
             elif file_dir == 'neg':
-                line = file_dir+'/'+img+'\n'
+                line = 'neg/'+str(img)+'\n'
                 with open('bg.txt','a') as f:
                     f.write(line)
 
